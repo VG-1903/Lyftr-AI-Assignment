@@ -46,16 +46,16 @@ Built using the **MERN stack (MongoDB, Express, React, Node.js)**.
 
 ## **📦 Installation**
 
-```bash
-# Clone the repository
+
+### **Clone the repository**
 git clone https://github.com/VG-1903/Lyftr-AI-Assignment.git
 cd Lyftr-AI-Assignment
 
-# Install dependencies automatically
-# Windows:
+### **Install dependencies automatically**
+#### **Windows:**
 install.bat
 
-# macOS/Linux:
+#### **macOS/Linux:**
 chmod +x install.sh
 ./install.sh
 
@@ -175,4 +175,5 @@ React not loading	Ensure backend is running
 .---
 
 ###**❤️ Built by Vansh Gaba**
+
 

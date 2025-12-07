@@ -1,0 +1,374 @@
+# ============================================
+# Lyftr AI Assignment - System Requirements
+# Generated from package.json and scraper design
+# ============================================
+
+## SYSTEM REQUIREMENTS
+## --------------------
+
+# Operating Systems Supported:
+# - Windows 10/11 (64-bit)
+# - macOS 10.15+
+# - Ubuntu 18.04+/Debian 10+/CentOS 7+
+
+# Minimum Hardware:
+# CPU: 2+ cores (4+ recommended for parallel scraping)
+# RAM: 2GB minimum (4GB recommended for Puppeteer)
+# Storage: 500MB free space
+# Network: Stable internet connection
+
+# Required Software:
+Node.js >= 16.0.0
+npm >= 8.0.0
+Git >= 2.20 (for cloning repository)
+
+# Optional (for Puppeteer):
+Google Chrome/Chromium >= 91.0
+Python >= 3.8 (for system dependencies)
+
+
+## EXTERNAL SERVICES REQUIRED
+## ---------------------------
+
+# 1. MongoDB Atlas (Free tier sufficient)
+#    - Sign up: https://www.mongodb.com/cloud/atlas
+#    - Create cluster and database
+#    - Get connection string format:
+#      mongodb+srv://<username>:<password>@cluster.mongodb.net/<database>
+
+# 2. Twilio Account (Optional, for WhatsApp features)
+#    - Sign up: https://www.twilio.com
+#    - Enable WhatsApp Sandbox
+#    - Required credentials:
+#      - Account SID
+#      - Auth Token
+#      - WhatsApp Sandbox Number
+
+
+## BACKEND DEPENDENCIES
+## --------------------
+
+# Web Framework & Core
+express >= 4.18.2        # Web application framework
+body-parser >= 1.20.2    # HTTP request body parsing
+cors >= 2.8.5            # Cross-Origin Resource Sharing
+dotenv >= 16.3.1         # Environment variable management
+helmet >= 7.1.0          # Security headers
+
+# Database
+mongoose >= 7.5.0        # MongoDB object modeling
+
+# Scraping Engines
+# ----------------
+# Primary: Static scraping (90% of cases)
+axios >= 1.6.0           # HTTP client for static scraping
+cheerio >= 1.0.0         # jQuery-like HTML parsing
+
+# Fallback: Dynamic/Javascript sites
+puppeteer >= 21.5.0      # Headless Chrome automation
+# Puppeteer requires Chrome/Chromium installation
+
+# External APIs
+twilio >= 4.19.0         # WhatsApp messaging API (optional)
+
+# Development Tools (Dev Dependencies)
+nodemon >= 3.0.1         # Auto-restart on changes
+jest >= 29.7.0           # Testing framework
+
+
+## FRONTEND DEPENDENCIES
+## ---------------------
+
+# Core React
+react >= 18.2.0          # UI library
+react-dom >= 18.2.0      # React DOM rendering
+
+# Build Toolchain
+react-scripts >= 5.0.1   # Create React App configuration
+
+# Browser Compatibility
+# Production: >0.2% market share, not dead browsers
+# Development: Latest Chrome, Firefox, Safari
+
+
+## PORT REQUIREMENTS
+## -----------------
+
+# Development Ports:
+# - Backend API: 5000 (default, auto-adjusts if busy)
+# - Frontend Dev Server: 3000 (default, auto-adjusts if busy)
+
+# Port Ranges for Auto-adjustment:
+# - Backend: 5000-5010
+# - Frontend: 3000-3010
+
+# Note: Launcher scripts (run.bat/run.sh) automatically find free ports
+
+
+## ENVIRONMENT VARIABLES
+## ---------------------
+
+### Backend (.env) - Required:
+MONGO_URI=<your_mongodb_atlas_connection_string>
+PORT=5000
+NODE_ENV=development
+
+### Backend (.env) - Optional (for WhatsApp):
+TWILIO_ACCOUNT_SID=<your_account_sid>
+TWILIO_AUTH_TOKEN=<your_auth_token>
+TWILIO_WHATSAPP_FROM=whatsapp:+14155238886
+NOTIFY_WHATSAPP_TO=<your_whatsapp_number>
+
+### Backend (.env) - Scraper Configuration:
+SCRAPER_TIMEOUT=30000               # 30 seconds timeout
+STATIC_TEXT_THRESHOLD=300           # Minimum text for static scraping
+MAX_SCROLL_ATTEMPTS=3               # Max scrolls for dynamic content
+ALLOWED_ORIGINS=http://localhost:3000
+
+### Frontend (.env.local) - Required:
+REACT_APP_API_URL=http://localhost:5000
+
+
+## INSTALLATION COMMANDS
+## ---------------------
+
+# Backend Installation:
+cd backend
+npm install
+
+# Frontend Installation:
+cd frontend
+npm install
+
+# Alternative: Use provided installation scripts:
+# Windows: double-click install.bat
+# Linux/Mac: chmod +x install.sh && ./install.sh
+
+
+## DEVELOPMENT COMMANDS
+## --------------------
+
+# Start Backend (development):
+cd backend
+npm run dev
+
+# Start Frontend:
+cd frontend
+npm start
+
+# Run Tests:
+cd backend
+npm test                    # Backend tests
+cd ../frontend
+npm test                   # Frontend tests
+
+# Build for Production:
+cd frontend
+npm run build
+
+
+## DEPLOYMENT REQUIREMENTS
+## -----------------------
+
+# For Vercel/Railway/Heroku:
+# - Node.js 16+ environment
+# - MongoDB Atlas connection
+# - Environment variables configured in dashboard
+# - Build command: npm run build (frontend)
+
+# For Traditional Hosting (PM2):
+# - PM2 process manager installed
+# - Nginx/Apache reverse proxy
+# - SSL certificates (recommended)
+# - Firewall rules for ports 80/443
+
+
+## SCRAPER-SPECIFIC REQUIREMENTS
+## -----------------------------
+
+# Puppeteer System Dependencies (Linux):
+# sudo apt-get install -y \
+#   gconf-service \
+#   libasound2 \
+#   libatk1.0-0 \
+#   libc6 \
+#   libcairo2 \
+#   libcups2 \
+#   libdbus-1-3 \
+#   libexpat1 \
+#   libfontconfig1 \
+#   libgcc1 \
+#   libgconf-2-4 \
+#   libgdk-pixbuf2.0-0 \
+#   libglib2.0-0 \
+#   libgtk-3-0 \
+#   libnspr4 \
+#   libpango-1.0-0 \
+#   libpangocairo-1.0-0 \
+#   libstdc++6 \
+#   libx11-6 \
+#   libx11-xcb1 \
+#   libxcb1 \
+#   libxcomposite1 \
+#   libxcursor1 \
+#   libxdamage1 \
+#   libxext6 \
+#   libxfixes3 \
+#   libxi6 \
+#   libxrandr2 \
+#   libxrender1 \
+#   libxss1 \
+#   libxtst6 \
+#   ca-certificates \
+#   fonts-liberation \
+#   libappindicator1 \
+#   libnss3 \
+#   lsb-release \
+#   xdg-utils \
+#   wget
+
+# Memory Requirements for Puppeteer:
+# - Minimum: 1GB RAM for single instance
+# - Recommended: 2GB+ RAM for concurrent scraping
+
+
+## TROUBLESHOOTING
+## ---------------
+
+# Common Issues:
+
+# 1. "Puppeteer failed to launch"
+#    Solution: Install system dependencies or use: npm install puppeteer --ignore-scripts
+
+# 2. "MongoDB connection failed"
+#    Solution: 
+#    - Whitelist IP in MongoDB Atlas (0.0.0.0/0 for testing)
+#    - Check connection string format
+#    - Verify internet connectivity
+
+# 3. "Port already in use"
+#    Solution:
+#    - Use provided launcher scripts (auto-finds free ports)
+#    - Run kill-ports.bat/kill-ports.sh
+#    - Close other programs using ports 3000/5000
+
+# 4. "Node.js not found"
+#    Solution: Install Node.js from https://nodejs.org/
+
+# 5. "npm install failed"
+#    Solution:
+#    - Clear npm cache: npm cache clean --force
+#    - Delete node_modules and package-lock.json
+#    - Check internet connection
+
+
+## SECURITY REQUIREMENTS
+## ---------------------
+
+# 1. Never commit .env files to version control
+# 2. Use environment variables for all secrets
+# 3. Implement CORS for trusted origins only
+# 4. Add rate limiting in production
+# 5. Use Helmet.js security headers
+# 6. Validate all user input and URLs
+# 7. Implement request size limits
+# 8. Use HTTPS in production
+
+# Scraper-specific security:
+# - Validate URLs before scraping
+# - Implement timeout limits
+# - Restrict allowed domains (if needed)
+# - Monitor resource usage
+
+
+## PERFORMANCE CONSIDERATIONS
+## --------------------------
+
+# Static Scraping (Cheerio):
+# - Concurrent requests: Up to 10 simultaneous
+# - Memory: ~50MB per request
+# - Speed: 5-15 seconds per page
+
+# Dynamic Scraping (Puppeteer):
+# - Concurrent instances: 1-3 (memory intensive)
+# - Memory: ~300MB per instance
+# - Speed: 30-60 seconds per page
+
+# Database:
+# - Connection pooling: 10 connections recommended
+# - Indexes on: url, createdAt, scrapedAt
+# - TTL indexes for old data (optional)
+
+# Optimization Tips:
+# - Use static scraping whenever possible
+# - Implement caching for repeated URLs
+# - Limit concurrent Puppeteer instances
+# - Use connection pooling for MongoDB
+
+
+## SUPPORTED SCRAPING FEATURES
+## ---------------------------
+
+# Content Types Extracted:
+# ✓ Text content (with noise filtering)
+# ✓ Headings (h1-h6)
+# ✓ Links (with absolute URL resolution)
+# ✓ Images (src, alt, dimensions)
+# ✓ Lists (ordered/unordered)
+# ✓ Tables (headers, rows, captions)
+# ✓ Metadata (title, description, language)
+
+# Interactive Features:
+# ✓ Auto-scroll for lazy loading
+# ✓ Overlay dismissal
+# ✓ "Load more" button clicking
+# ✓ Dynamic content waiting
+
+# Output Formats:
+# ✓ Structured JSON
+# ✓ MongoDB storage
+# ✓ Section-based organization
+# ✓ Error tracking and logging
+
+
+## LICENSE & COMPLIANCE
+## --------------------
+
+# Software License: MIT
+# Puppeteer License: Apache 2.0
+# Twilio: Commercial license required for production use
+# MongoDB Atlas: Free tier available (512MB storage)
+
+# Legal Compliance:
+# - Respect robots.txt
+# - Implement rate limiting
+# - Check website terms of service
+# - Consider GDPR/data privacy regulations
+# - Add user agent identification
+
+
+## SUPPORT & CONTACT
+## -----------------
+
+# Repository: https://github.com/VG-1903/Lyftr-AI-Assignment
+# Documentation: README.md, setup-guide.md, design_notes.md
+# Issues: GitHub Issues tracker
+
+# For technical support:
+# 1. Check troubleshooting section
+# 2. Review design_notes.md for architecture details
+# 3. Open GitHub issue with error details
+
+
+## VERSION HISTORY
+## ---------------
+
+# v1.0.0 - Initial Release
+# - Hybrid static/dynamic scraping
+# - MongoDB Atlas integration
+# - WhatsApp notifications
+# - Auto-port finding launchers
+# - Comprehensive error handling
+
+# Last Updated: 2024-01-15
+# Generated from: package.json, scraper.js, design requirements

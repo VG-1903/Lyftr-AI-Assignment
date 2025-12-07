@@ -174,6 +174,7 @@ React not loading	Ensure backend is running
 
 .---
 
-###**❤️ Built by Vansh Gaba**
+### **❤️ Built by Vansh Gaba**
+
 
 
